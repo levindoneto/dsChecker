@@ -23,6 +23,9 @@ while value.strip() != 'stop':
 # so an ordering of the symbols isn't needed
 for i in range(len(symbols)):
     for j in range(len(symbols)):
-        if(symbols[i] == symbols[j]):
+        if(symbols[i]==symbols[j] and i!=j): # The comparison just matters if it's between 2 different symbols
             pass
+        elif ( check.isSuffixOf(symbols[i], symbols[j]) ):
+            rest = check.nonSuffixPart(symbols[i], symbols[j])
+            symbols.append(rest)
         j+=1
