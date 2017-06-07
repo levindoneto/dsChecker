@@ -7,19 +7,25 @@ from utils_check import utils as check
     @:parameter : List with the symbols of a code
     @:return    : Boolean, true = code is uniquely decodable, false = code isn't uniquely decodable '''
 def danglingSuffix(code, uniquely_decodable):
-    this_niquely_decodable = uniquely_decodable
+    this_uniquely_decodable = uniquely_decodable
     ''' Starting of the checking '''
     # All of the symbols in the code is checked with each other,
     # so an ordering of the symbols isn't needed
+    print("THE LEN: ",len(code))
     for i in range(len(code)):
         for j in range(len(code)):
-            if (code[i] == code[j] and i != j):  # The comparison just matters if it's between 2 different symbols
-                this_niquely_decodable = False
-            elif (check.isSuffixOf(code[i], code[j])):
-                rest = check.nonSuffixPart(code[i], code[j])
+            equalSymbols = (str(code[i]) == str(code[j]))
+            if (equalSymbols==True and i!= j):  # The comparison just matters if it's between 2 different symbols
+                print("IM HERE")
+                this_uniquely_decodable = False
+            elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j):  # Code_i is prefix of code_j
+                print ("ENTREI AQUI COM ", i, j)
+                rest = str(check.suffixPart(str(code[i]), str(code[j])))
+                print (rest)
                 code.append(rest)
             else:
+                print("joao")
                 pass
             j += 1
 
-    return this_niquely_decodable
+    return this_uniquely_decodable
