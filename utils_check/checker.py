@@ -14,17 +14,18 @@ def danglingSuffix(code, uniquely_decodable):
     print("THE LEN: ",len(code))
     for i in range(len(code)):
         for j in range(len(code)):
-            equalSymbols = (str(code[i]) == str(code[j]))
-            if (equalSymbols==True and i!= j):  # The comparison just matters if it's between 2 different symbols
+            sizeSymbol1 = len(code[i])
+            sizeSymbol2 = len(code[j])
+            equalSymbols = (code[i] == code[j])
+            if (sizeSymbol2 < sizeSymbol1):
+                continue # It shouldn't do the verifications when the 1st symbol has lower size than the 2nd one (it goes to the next iteration)
+            elif (equalSymbols==True and i!= j):  # The comparison just matters if it's between 2 different symbols
                 print("IM HERE")
                 this_uniquely_decodable = False
             elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j):  # Code_i is prefix of code_j
-                print ("ENTREI AQUI COM ", i, j)
-                rest = str(check.suffixPart(str(code[i]), str(code[j])))
-                print (rest)
-                code.append(rest)
+                rest = list(check.suffixPart(str(code[i]), str(code[j])))
+                code.extend(rest)
             else:
-                print("joao")
                 pass
             j += 1
 
