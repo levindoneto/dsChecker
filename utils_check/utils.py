@@ -34,6 +34,13 @@ def suffixPart(symbol_1, symbol_2):
     print(aux, type(aux))
     return aux
 
+''' This function is responsible for adding the two indexes in a list with two positions inside 
+    the list of pairs of indexes already compared
+    @:parameter : Integers index_1 and index_2, List of pairs of indexes already compared
+    @:return    : NULL '''
+def addIndexesToList(index_1, index_2, list_pairs_indexes):
+    return True
+
 ''' This function verifies if two symbols of two different positions were already compared
     @:parameter : Integers index_1 and index_2, List of pairs of indexes already compared
     @:return    : Boolean, True: Already compared, False: They weren't compared yet'''

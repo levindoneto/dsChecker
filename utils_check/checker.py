@@ -17,9 +17,9 @@ def danglingSuffix(code, uniquely_decodable):
     print("THE LEN: ",len(code))
     while (i<len(code)):
         while (j < len(code)):
-            alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexCMP)
-            if (alreadyCompared == True):
-                continue
+            #alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexCMP)
+            #if (alreadyCompared == True):
+            #    continue
             sizeSymbol1 = len(code[i])
             sizeSymbol2 = len(code[j])
             equalSymbols = (code[i] == code[j])
@@ -29,9 +29,9 @@ def danglingSuffix(code, uniquely_decodable):
 
             elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j):  # Code_i is prefix of code_j
                 rest = check.suffixPart(str(code[i]), str(code[j]))
-                # print("rest", rest)
+                print("rest", rest)
                 code.append(str(rest))
-                #danglingSuffix(code, this_uniquely_decodable)
+                danglingSuffix(code, this_uniquely_decodable)
                 print(code)
             else:
                 pass
