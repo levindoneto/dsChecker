@@ -8,12 +8,15 @@ from utils_check import utils as check
     @:return    : Boolean, true = code is uniquely decodable, false = code isn't uniquely decodable '''
 def danglingSuffix(code, uniquely_decodable):
     this_uniquely_decodable = uniquely_decodable
+    i=0
+    j=0
+
     ''' Starting of the checking '''
     # All of the symbols in the code is checked with each other,
     # so an ordering of the symbols isn't needed
     print("THE LEN: ",len(code))
-    for i in range(len(code)):
-        for j in range(len(code)):
+    while (i<len(code)):
+        while (j < len(code)):
             sizeSymbol1 = len(code[i])
             sizeSymbol2 = len(code[j])
             equalSymbols = (code[i] == code[j])
@@ -30,5 +33,6 @@ def danglingSuffix(code, uniquely_decodable):
             else:
                 pass
             j += 1
+        i+=1
 
     return this_uniquely_decodable
