@@ -15,9 +15,9 @@ menu.showMenu()
 # Add values to the list of verification (manually)
 value = input("> ")
 code.append(value)
-while value.strip() != 'stop':
+while value.strip() != 's':
     value = input("> ")
-    if (value != "stop"):
+    if (value != "s"):
         code.append(value)
 
 result = checkCode.danglingSuffix(code, uniquely_decodable)

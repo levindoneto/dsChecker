@@ -10,7 +10,7 @@ def isPrefixOf(symbol_1, symbol_2):
     if (len_s1 < len_s2):
         isPrefix = str(symbol_2).startswith(str(symbol_1))
     else:
-        isPrefix = str(symbol_2).startswith(str(symbol_1))
+        isPrefix = str(symbol_1).startswith(str(symbol_2))
     return isPrefix
 
 ''' This function gives the non-prefix between two symbols
@@ -24,8 +24,13 @@ def suffixPart(symbol_1, symbol_2):
 
     size_s1 = len(symbol_1) # The 1st position of symbol_2 that is different from the suffix is in the position of the size of the symbol_1
     size_s2 = len(symbol_2)
-    for s in range(size_s1, size_s2):
-        aux+=symbol_2[s]
+
+    if (size_s1 < size_s2):
+        for s in range(size_s1, size_s2):
+            aux+=symbol_2[s]
+    else:
+        for s in range(size_s2, size_s1):
+            aux+=symbol_1[s]
     print(aux, type(aux))
     return aux
 
