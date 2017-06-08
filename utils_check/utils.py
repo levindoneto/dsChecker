@@ -34,3 +34,8 @@ def suffixPart(symbol_1, symbol_2):
     print(aux, type(aux))
     return aux
 
+''' This function verifies if two symbols of two different positions were already compared
+    @:parameter : Integers index_1 and index_2, List of pairs of indexes already compared
+    @:return    : Boolean, True: Already compared, False: They weren't compared yet'''
+def alreadyCMP(index_1, index_2, list_pairs_indexes):
+    return True

@@ -10,13 +10,16 @@ def danglingSuffix(code, uniquely_decodable):
     this_uniquely_decodable = uniquely_decodable
     i=0
     j=0
-
+    list_pairs_indexCMP = [] # Format: [[i1,i2], [i1, i2],...], list with lists with 2 indexes
     ''' Starting of the checking '''
     # All of the symbols in the code is checked with each other,
     # so an ordering of the symbols isn't needed
     print("THE LEN: ",len(code))
     while (i<len(code)):
         while (j < len(code)):
+            alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexCMP)
+            if (alreadyCompared == True):
+                continue
             sizeSymbol1 = len(code[i])
             sizeSymbol2 = len(code[j])
             equalSymbols = (code[i] == code[j])
@@ -28,8 +31,8 @@ def danglingSuffix(code, uniquely_decodable):
                 rest = check.suffixPart(str(code[i]), str(code[j]))
                 # print("rest", rest)
                 code.append(str(rest))
+                #danglingSuffix(code, this_uniquely_decodable)
                 print(code)
-
             else:
                 pass
             j += 1
