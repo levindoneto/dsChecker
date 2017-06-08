@@ -39,6 +39,12 @@ def suffixPart(symbol_1, symbol_2):
     @:parameter : Integers index_1 and index_2, List of pairs of indexes already compared
     @:return    : NULL '''
 def addIndexesToList(index_1, index_2, list_pairs_indexes):
+    new_pair = [] # Auxiliar list which is always updated with new pairs of indexes already compared
+    ''' Each pair is a list with two integers (indexes)'''
+    new_pair.append(index_1)
+    new_pair.append(index_2)
+
+    list_pairs_indexes.append(new_pair)
     return True
 
 ''' This function verifies if two symbols of two different positions were already compared

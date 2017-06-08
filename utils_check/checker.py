@@ -17,6 +17,7 @@ def danglingSuffix(code, uniquely_decodable):
     print("THE LEN: ",len(code))
     while (i<len(code)):
         while (j < len(code)):
+
             #alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexCMP)
             #if (alreadyCompared == True):
             #    continue
@@ -31,10 +32,11 @@ def danglingSuffix(code, uniquely_decodable):
                 rest = check.suffixPart(str(code[i]), str(code[j]))
                 print("rest", rest)
                 code.append(str(rest))
-                danglingSuffix(code, this_uniquely_decodable)
+                #danglingSuffix(code, this_uniquely_decodable)
                 print(code)
             else:
                 pass
+
             j += 1
         i+=1
 
