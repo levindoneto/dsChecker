@@ -51,4 +51,8 @@ def addIndexesToList(index_1, index_2, list_pairs_indexes):
     @:parameter : Integers index_1 and index_2, List of pairs of indexes already compared
     @:return    : Boolean, True: Already compared, False: They weren't compared yet'''
 def alreadyCMP(index_1, index_2, list_pairs_indexes):
-    return True
+    for i in range(len(list_pairs_indexes)): # Accessing each pair of indexes (lists with len 2) individually
+            fistConditionCMP = list_pairs_indexes[i][0] is index_1 and list_pairs_indexes[i][1] is index_2
+            SecondConditionCMP = list_pairs_indexes[i][0] is index_1 and list_pairs_indexes[i][1] is index_2
+            wereCMP = fistConditionCMP or SecondConditionCMP
+    return wereCMP
