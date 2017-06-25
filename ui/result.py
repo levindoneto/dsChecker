@@ -4,7 +4,7 @@
     @:parameter : Boolean with the information about the code provided by the user
     @:return    : NULL '''
 def result(uniquely_decodable):
-    if (uniquely_decodable is True):
+    if (uniquely_decodable is not False):
         print ("The code is uniquely decodable")
     else:
         print("The code isn't uniquely decodable")

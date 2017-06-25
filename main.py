@@ -6,9 +6,7 @@ from utils_check import checker as checkCode
 from ui import result as showResult
 
 code = [] # List of binary symbols of a code to be checked
-i = 0
-j = 1
-uniquely_decodable = True
+list_pairs_indexes = [] # List with the already compared indexes | Format: [[i1,i2], [i1, i2],...], list with lists with 2 indexes
 
 menu.showMenu()
 
@@ -20,6 +18,6 @@ while value.strip() != 's':
     if (value != "s"):
         code.append(value)
 
-result = checkCode.danglingSuffix(code, uniquely_decodable)
+result = checkCode.danglingSuffix(code, list_pairs_indexes)
 showResult.result(result)
 

@@ -6,37 +6,32 @@ from utils_check import utils as check
 ''' This function is responsible for the dangling suffix checking of a code of symbols
     @:parameter : List with the symbols of a code
     @:return    : Boolean, true = code is uniquely decodable, false = code isn't uniquely decodable '''
-def danglingSuffix(code, uniquely_decodable):
-    this_uniquely_decodable = uniquely_decodable
-    i=0
-    j=0
-    list_pairs_indexCMP = [] # Format: [[i1,i2], [i1, i2],...], list with lists with 2 indexes
+def danglingSuffix(code, list_pairs_indexes):
+    i = 0
+    j = 0
+    this_uniquely_decodable = True #
     ''' Starting of the checking '''
     # All of the symbols in the code is checked with each other,
     # so an ordering of the symbols isn't needed
-    print("THE LEN: ",len(code))
     while (i<len(code)):
         while (j < len(code)):
-
-            #alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexCMP)
-            #if (alreadyCompared == True):
-            #    continue
-            sizeSymbol1 = len(code[i])
-            sizeSymbol2 = len(code[j])
             equalSymbols = (code[i] == code[j])
-            if (equalSymbols==True and i!= j):  # The comparison just matters if it's between 2 different symbols
-                #print("IM HERE")
-                this_uniquely_decodable = False
+            alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexes)
+            print ("In Dangling: ", alreadyCompared)
 
-            elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j):  # Code_i is prefix of code_j
+            if (equalSymbols==True and i!=j and alreadyCompared == False):  # The comparison just matters if it's between 2 different symbols
+                this_uniquely_decodable = False
+                break
+
+            elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j and alreadyCompared == False):  # Code_i is prefix of code_j
                 rest = check.suffixPart(str(code[i]), str(code[j]))
-                print("rest", rest)
-                code.append(str(rest))
-                #danglingSuffix(code, this_uniquely_decodable)
-                print(code)
+                code.append(str(rest)) # Add the non-prefix part to the last position of the list of symbols
+                list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)  # Add the indexes already compared in a list for future verifications
+                danglingSuffix(code, list_pairs_indexes) # Call the recursively the dangling function with the updated code list
+            elif (alreadyCompared == False):
+                list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)
             else:
                 pass
-
             j += 1
         i+=1
 

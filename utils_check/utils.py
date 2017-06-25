@@ -31,7 +31,6 @@ def suffixPart(symbol_1, symbol_2):
     else:
         for s in range(size_s2, size_s1):
             aux+=symbol_1[s]
-    print(aux, type(aux))
     return aux
 
 ''' This function is responsible for adding the two indexes in a list with two positions inside 
@@ -45,14 +44,21 @@ def addIndexesToList(index_1, index_2, list_pairs_indexes):
     new_pair.append(index_2)
 
     list_pairs_indexes.append(new_pair)
-    return True
+
+    return list_pairs_indexes # Returning the updated list with indexes already compared
 
 ''' This function verifies if two symbols of two different positions were already compared
     @:parameter : Integers index_1 and index_2, List of pairs of indexes already compared
     @:return    : Boolean, True: Already compared, False: They weren't compared yet'''
 def alreadyCMP(index_1, index_2, list_pairs_indexes):
+    wereCMP = False
     for i in range(len(list_pairs_indexes)): # Accessing each pair of indexes (lists with len 2) individually
-            fistConditionCMP = list_pairs_indexes[i][0] is index_1 and list_pairs_indexes[i][1] is index_2
-            SecondConditionCMP = list_pairs_indexes[i][0] is index_1 and list_pairs_indexes[i][1] is index_2
-            wereCMP = fistConditionCMP or SecondConditionCMP
+            firstConditionCMP = (list_pairs_indexes[i][0]==index_1) and (list_pairs_indexes[i][1]==index_2)
+            secondConditionCMP = (list_pairs_indexes[i][1]==index_1) and (list_pairs_indexes[i][0]==index_2)
+            #print ("1st: ", firstConditionCMP, "in the ", list_pairs_indexes[i][0], list_pairs_indexes[i][1])
+            wereCMP = firstConditionCMP or secondConditionCMP
+            if (wereCMP):
+                wereCMP = True
+                break
+            #print("were: ", wereCMP)
     return wereCMP
