@@ -35,6 +35,13 @@ Thus, during the execution, two elements with the same value were found. In this
 
 Python 3.6.1 which can be download [here](https://www.python.org/downloads/release/python-361/)
 
+## To run
+
+```terminal
+$ python main.py
+```
+
+
 ## License
 
 MIT License. Click [here](LICENSE.md) for more information about this license.

@@ -9,7 +9,8 @@ from utils_check import utils as check
 def danglingSuffix(code, list_pairs_indexes):
     i = 0
     j = 0
-    this_uniquely_decodable = True #
+    global this_uniquely_decodable
+    this_uniquely_decodable = True
     ''' Starting of the checking '''
     # All of the symbols in the code is checked with each other,
     # so an ordering of the symbols isn't needed
@@ -19,19 +20,19 @@ def danglingSuffix(code, list_pairs_indexes):
             alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexes)
             print ("In Dangling: ", alreadyCompared)
 
-            if (equalSymbols==True and i!=j and alreadyCompared == False):  # The comparison just matters if it's between 2 different symbols
-                this_uniquely_decodable = False
-                break
+            if (alreadyCompared == False):
+                list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)
 
             elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j and alreadyCompared == False):  # Code_i is prefix of code_j
                 rest = check.suffixPart(str(code[i]), str(code[j]))
                 code.append(str(rest)) # Add the non-prefix part to the last position of the list of symbols
                 list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)  # Add the indexes already compared in a list for future verifications
                 danglingSuffix(code, list_pairs_indexes) # Call the recursively the dangling function with the updated code list
-            elif (alreadyCompared == False):
-                list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)
-            else:
-                pass
+
+            elif (equalSymbols==True and i!=j and alreadyCompared == False):  # The comparison just matters if it's between 2 different symbols
+                this_uniquely_decodable = False
+                continue
+            print (code)
             j += 1
         i+=1
 
