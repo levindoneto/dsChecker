@@ -43,7 +43,8 @@ def addIndexesToList(index_1, index_2, list_pairs_indexes):
     new_pair.append(index_1)
     new_pair.append(index_2)
 
-    list_pairs_indexes.append(new_pair)
+    if (new_pair not in list_pairs_indexes):
+        list_pairs_indexes.append(new_pair)
 
     return list_pairs_indexes # Returning the updated list with indexes already compared
 

@@ -16,23 +16,24 @@ def danglingSuffix(code, list_pairs_indexes):
     # so an ordering of the symbols isn't needed
     while (i<len(code)):
         while (j < len(code)):
+            print("CODE: ", code, ">>>> i:", i, "j:", j)
+            print("LIST CMP: ", list_pairs_indexes)
             equalSymbols = (code[i] == code[j])
             alreadyCompared = check.alreadyCMP(i, j, list_pairs_indexes)
-            print ("In Dangling: ", alreadyCompared)
+            print ("CMP: ", alreadyCompared)
 
-            if (alreadyCompared == False):
-                list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)
-
-            elif (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j and alreadyCompared == False):  # Code_i is prefix of code_j
+            #if (alreadyCompared == False):
+            #    list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)
+            #    print(list_pairs_indexes)
+            list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)  # Add the indexes already compared in a list for future verifications
+            if (check.isPrefixOf(str(code[i]), str(code[j])) and i!=j and alreadyCompared == False):  # Code_i is prefix of code_j
                 rest = check.suffixPart(str(code[i]), str(code[j]))
                 code.append(str(rest)) # Add the non-prefix part to the last position of the list of symbols
-                list_pairs_indexes = check.addIndexesToList(i, j, list_pairs_indexes)  # Add the indexes already compared in a list for future verifications
                 danglingSuffix(code, list_pairs_indexes) # Call the recursively the dangling function with the updated code list
 
             elif (equalSymbols==True and i!=j and alreadyCompared == False):  # The comparison just matters if it's between 2 different symbols
                 this_uniquely_decodable = False
                 continue
-            print (code)
             j += 1
         i+=1
 
